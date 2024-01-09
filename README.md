@@ -1,6 +1,6 @@
 # Snowflake Access Data Query and Export Tool
 
-This tool connects to a Snowflake instance, executes a set of predefined queries, and exports the results to an Excel file, with each query's output in a separate worksheet. I developed this at USAA in support of Information Governance and IAM objectives while designing and managing the IAM architecture. The output of this tool allows you to greatly enrich data from your IdP and other sources to gain actionable insights.  
+This tool connects to a Snowflake instance, executes a set of predefined queries, and exports the results to an Excel file, with each query's output in a separate worksheet. I developed this at USAA in support of Information Governance and IAM objectives while designing and managing the IAM architecture for Snowflake access. The output of this tool allows you to greatly enrich data from your IdP and other sources to gain actionable insights.  
 
 ## Features
 
