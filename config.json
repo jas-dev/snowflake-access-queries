@@ -1,0 +1,12 @@
+{
+    "snowflake": {
+        "user": "your_username",
+        "password": "your_password",
+        "role": "your_default_role",
+        "account": "your_account_identifier",
+        "authenticator": "your_auth_method",
+        "warehouse": "your_default_warehouse",
+        "database":"your_default_database",
+        "schema": "your_default_schema"
+    }
+}
