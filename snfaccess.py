@@ -1,5 +1,4 @@
 from snowflake.connector import connect
-from snowflake.core import Root
 import pandas as pd
 import json
 
