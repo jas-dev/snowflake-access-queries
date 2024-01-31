@@ -15,6 +15,7 @@ conn = connect(**snowflake_config)
 ## Function to execute a query and return a pandas DataFrame
 def execute_query(query):
     cur = conn.cursor()
+    
     try:
         cur.execute(query)
         df = pd.DataFrame(cur.fetchall(), columns=[col[0] for col in cur.description])
