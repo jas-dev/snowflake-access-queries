@@ -18,6 +18,14 @@ def execute_query(query):
     try:
         cur.execute(query)
         df = pd.DataFrame(cur.fetchall(), columns=[col[0] for col in cur.description])
+        
+        # convert timezone-aware datetime columns to timezone-naive
+        # interate over all columns
+        # check if hte column is timezone-aware datetime type
+        # if so, convert column to timezone-naive
+        for col in df.columns:
+            if pd.api.types.is_datetime64_any_dtype(df[col]):
+                df[col] = df[col].dt.tz_localize(None)
         return df
     finally:
         cur.close()
@@ -26,7 +34,7 @@ queries = {
     "grants_to_roles": "SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.GRANTS_TO_ROLES",
     "grants_to_users": "SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.GRANTS_TO_USERS",
     "warehouse_events_history": "SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_EVENTS_HISTORY",
-    "object_privileges": "SELECT * FROM DB_ONE.INFORMATION_SCHEMA.OBJECT_PRIVILEGES"
+    "object_privileges": "SELECT * FROM SNOWFLAKE_SAMPLE_DATA.INFORMATION_SCHEMA.OBJECT_PRIVILEGES"
 }
 
 ## Execute queries and write each to separate worksheets in Excel

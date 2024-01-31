@@ -1,6 +1,6 @@
 # Snowflake Access Data Query and Export Tool
 
-This tool connects to a Snowflake instance, executes a set of predefined queries, and exports the results to an Excel file, with each query's output in a separate worksheet. I developed this at USAA in support of Information Governance and IAM objectives while designing and managing the IAM architecture for Snowflake access. The output of this tool allows you to greatly enrich data from your IdP and other sources to gain actionable insights.  
+This tool connects to a Snowflake instance, executes a set of predefined queries, and exports the results to an Excel file, with each query's output in a separate worksheet. I developed this at USAA in support of Information Governance and IAM objectives while designing and managing the IAM architecture for Snowflake access. There are several ways to automate these queries and outputs based on the use case, but this one was the least complex and most expedient for my needs. The output of this tool allows you to greatly enrich data from your IdP and other sources to gain actionable insights.  
 
 ## Features
 
@@ -23,7 +23,8 @@ This tool connects to a Snowflake instance, executes a set of predefined queries
 
 ### Known issues
 
-At this time `snowflake-connector-python` is v3.6.0 and only compatible with Python up to version 3.10, with 3.12 support TBD pending [release of v3.7.0](https://github.com/snowflakedb/snowflake-connector-python/blob/main/DESCRIPTION.md). If you attempt to install the connector with Python 3.12 you will encounter errors. 
+- `snowflake-connector-python` v3.6.0 is only compatible with Python up to version 3.10. For Python 3.12 support ensure the connector is [v3.7.0](https://github.com/snowflakedb/snowflake-connector-python/blob/main/DESCRIPTION.md). 
+- This method is timezone-naive, meaning the timezone-aware datetime objects have been converted to timezone-naive; this is because pandas cannot write timezone-aware datetime objects directly to an Excel file. Fortunately, if you need to preserve timezone-aware objects, there are solutions for that using alternative methods and/or packages which are outside of the scope of this script.
 
 ### Installation
 
@@ -34,9 +35,9 @@ At this time `snowflake-connector-python` is v3.6.0 and only compatible with Pyt
     ```
 2. Download the repo files and extract to a directory or git clone
 
-3. Modify the `config.json` file in the project directory to replace the values with your actual Snowflake details. For authentication options refer to [python connector API docs](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-api#functions)
+3. Modify the `config.json` file in the project directory to replace the values with your actual Snowflake details. For authentication and other options options refer to [python connector API docs](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-api#functions)
 
-4. In the `object_privileges` query, Replace `DB_one` with the name of the DB you want to query
+4. In the `object_privileges` query, Replace `SNOWFLAKE_SAMPLE_DATA` with the name of the DB you want to query
 
 ## Usage
 
