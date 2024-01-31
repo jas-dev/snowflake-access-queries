@@ -21,12 +21,13 @@ def execute_query(query):
         
         # convert timezone-aware datetime columns to timezone-naive
         # interate over all columns
-        # check if hte column is timezone-aware datetime type
+        # check if the column is timezone-aware datetime type
         # if so, convert column to timezone-naive
         for col in df.columns:
             if pd.api.types.is_datetime64_any_dtype(df[col]):
                 df[col] = df[col].dt.tz_localize(None)
         return df
+    
     finally:
         cur.close()
 
@@ -44,4 +45,3 @@ with pd.ExcelWriter('snowflake_data.xlsx', engine='openpyxl') as writer:
         df.to_excel(writer, sheet_name=sheet_name, index=False)
 
 conn.close()
-
