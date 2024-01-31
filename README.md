@@ -35,8 +35,8 @@ This tool connects to a Snowflake instance, executes a set of predefined queries
     ```
 2. Download the repo files and extract to a directory or git clone
 
-3. Create a `config.json` file in the project directory and replace the values with your actual Snowflake details. For authentication and other options options refer to [python connector API docs](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-api#functions) Example:
-`
+3. Create a `config.json` file in the project directory and replace the values with your actual Snowflake details. For authentication and other options options refer to [python connector API docs](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-api#functions). Example:
+```
 {
     "snowflake": {
         "user": "",
@@ -49,7 +49,7 @@ This tool connects to a Snowflake instance, executes a set of predefined queries
         "schema": "INFORMATION_SCHEMA"
     }
 }
-`
+```
 
 4. In the `object_privileges` query, Replace `SNOWFLAKE_SAMPLE_DATA` with the name of the DB you want to query
 
